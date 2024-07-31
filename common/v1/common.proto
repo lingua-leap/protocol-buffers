@@ -1,0 +1,17 @@
+// api/proto/common/v1/common.proto
+syntax = "proto3";
+
+package common.v1;
+
+option go_package = "/api/gen/go/common/v1;commonpb";
+
+message user {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+}
+
+message Timestamp {
+  int64 seconds = 1;
+  int32 nanos = 2;
+}
