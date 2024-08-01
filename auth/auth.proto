@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "genproto/auth";
+
+service AuthService {
+    rpc RegisterUser(RegisterUserRequest) returns (UserResponse);
+    rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
+    rpc LogoutUser(LogoutUserRequest) returns (LogoutUserResponse);
+    rpc GetUserProfile(GetUserProfileRequest) returns (UserResponse);
+    rpc UpdateUserProfile(UpdateUserProfileRequest) returns (UserResponse);
+    rpc ChangeUserPassword(ChangeUserPasswordRequest) returns (ChangeUserPasswordResponse);
+    rpc RequestPasswordReset(RequestPasswordResetRequest) returns (RequestPasswordResetResponse);
+    rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse);
+}
+
+message RegisterUserRequest {
+    string username = 1;
+    string email = 2;
+    string password = 3;
+    string full_name = 4;
+    string native_language = 5;
+}
+
+message LoginUserRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LogoutUserRequest {
+    string token = 1;
+}
+
+message GetUserProfileRequest {
+    string user_id = 1;
+}
+
+message UpdateUserProfileRequest {
+    string user_id = 1;
+    string full_name = 2;
+    string native_language = 3;
+}
+
+message ChangeUserPasswordRequest {
+    string user_id = 1;
+    string current_password = 2;
+    string new_password = 3;
+}
+
+message RequestPasswordResetRequest {
+    string email = 1;
+}
+
+message ResetPasswordRequest {
+    string reset_token = 1;
+    string new_password = 2;
+}
+
+message UserResponse {
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    string full_name = 4;
+    string native_language = 5;
+    repeated string learning_languages = 6;
+    string created_at = 7;
+}
+
+message LoginUserResponse {
+    string token = 1;
+    string expires_at = 2;
+}
+
+message LogoutUserResponse {
+    string message = 1;
+}
+
+message ChangeUserPasswordResponse {
+    string message = 1;
+}
+
+message RequestPasswordResetResponse {
+    string message = 1;
+}
+
+message ResetPasswordResponse {
+    string message = 1;
+}
