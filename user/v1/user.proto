@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package user;
 
-option go_package = "/v1;userpb";
 
 service UserService {
   rpc GetUserProfile(UserId) returns (UserProfile);

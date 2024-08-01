@@ -3,7 +3,6 @@ syntax = "proto3";
 
 package common.v1;
 
-option go_package = "/v1/commonpb";
 
 message user {
   string id = 1;
