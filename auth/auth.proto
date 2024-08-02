@@ -9,10 +9,22 @@ service AuthService {
     rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
     rpc LogoutUser(LogoutUserRequest) returns (LogoutUserResponse);
     rpc GetUserProfile(GetUserProfileRequest) returns (UserResponse);
+    rpc GetAllUsersProfile(GetAllUsersProfileRequest) returns (UsersResponse);
     rpc UpdateUserProfile(UpdateUserProfileRequest) returns (UserResponse);
     rpc ChangeUserPassword(ChangeUserPasswordRequest) returns (ChangeUserPasswordResponse);
     rpc RequestPasswordReset(RequestPasswordResetRequest) returns (RequestPasswordResetResponse);
     rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse);
+}
+
+message GetAllUsersProfileRequest{
+    int32 page = 1;
+    int32 limit = 2;
+    string search = 3;
+}
+
+message UsersResponse{
+    repeated UserResponse users = 1;
+    int32 total_count = 2;
 }
 
 message RegisterUserRequest {
