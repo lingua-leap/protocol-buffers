@@ -2,12 +2,37 @@ syntax = "proto3";
 
 package user;
 
+option go_package = "generated/user";
+
 
 service UserService {
-  rpc GetUserProfile(UserId) returns (UserProfile);
+  rpc CreateUser(CreateUserRequest) returns (UserResponse);
+  rpc GetUserProfile(UserId) returns (UserResponse);
+  rpc GetAllUsers(FilterRequest) returns (UsersResponse);
   rpc UpdateUserProfile(UpdateUserPRequest) returns (UpdateUserPResponse);
-  rpc Logout(Void) returns (Success);
   rpc ChangePassword(ChangePasswordRequest) returns (Success);
+  rpc DeleteUser(UserId) returns (Success);
+}
+
+message UsersResponse {
+  int32 limit = 1;
+  int32 offset = 2;
+  repeated UserResponse users = 3;
+}
+
+message FilterRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+  string native = 3;
+  string name = 4;
+}
+
+message CreateUserRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+  string full_name = 4;
+  string native_language = 5;
 }
 
 message Void {}
@@ -16,7 +41,7 @@ message UserId {
   string id = 1;
 }
 
-message UserProfile {
+message UserResponse {
   string id = 1;
   string username = 2;
   string email = 3;
