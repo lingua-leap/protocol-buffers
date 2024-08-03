@@ -14,6 +14,16 @@ service AuthService {
     rpc ChangeUserPassword(ChangeUserPasswordRequest) returns (ChangeUserPasswordResponse);
     rpc RequestPasswordReset(RequestPasswordResetRequest) returns (RequestPasswordResetResponse);
     rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse);
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+}
+
+
+message DeleteUserRequest {
+    string id = 1;
+}
+
+message DeleteUserResponse{
+    string message = 1;
 }
 
 message GetAllUsersProfileRequest{
