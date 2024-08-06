@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package progress;
+
+option go_package = "generated/progress";
+
+service ProgressService {
+  rpc GetUserProgress(LCodeUID) returns (GetUserProgressResponse);
+  rpc GetDailyProgress(UserID) returns (GetDailyProgressResponse);
+  rpc GetWeeklyProgress(UserID) returns (GetWeeklyProgressResponse);
+  rpc GetMonthlyProgress(UserID) returns (GetMonthlyProgressResponse);
+  rpc GetUserAchievement(UserID) returns (GetUserAchievementsResponse);
+  rpc GetLeaders(LanguageCode) returns (GetLeadersResponse);
+  rpc GetUserSkills(LCodeUID) returns (GetUserSkillsResponse);
+  rpc GetStatistics(LCodeUID) returns (GetStatisticsResponse);
+}
+
+message GetStatisticsResponse {
+  string languageCode = 1;
+  int64 totalLessonsCompleted = 2;
+  int64 totalExercisesCompleted = 3;
+}
+
+message GetUserSkillsResponse {
+  string languageCode = 1;
+  repeated Skill skills = 2;
+}
+
+message Skill {
+  string name = 1;
+  int64 level = 2;
+  int64 progressToNextLevel = 3;
+  int64 rulesMastered = 4;
+}
+
+message GetLeadersResponse {
+  string languageCode = 1;
+  repeated LeaderBoard leaderBoard = 2;
+}
+
+message LeaderBoard {
+  int64 rank = 1;
+  string userName = 2;
+  int64 xp = 3;
+  string level = 4;
+}
+
+message LanguageCode {
+  string code = 1;
+}
+
+message GetUserAchievementsResponse {
+  repeated Achievement achievements = 1;
+}
+
+message Achievement {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string earnedAt = 4;
+}
+
+message GetMonthlyProgressResponse {
+  string month = 1;
+  Progress progress = 2;
+  string totalMinutesPracticed = 3;
+  string mostImprovedSkill = 4;
+}
+
+message GetWeeklyProgressResponse {
+  string weekStart = 1;
+  string weekEnd = 2;
+  Progress progress = 3;
+  string totalMinutesPracticed = 4;
+  string mostActiveDay = 5;
+}
+
+message GetDailyProgressResponse {
+  string data = 1;
+  Progress progress = 2;
+  string streakDays = 3;
+}
+
+message LCodeUID {
+  string userId = 1;
+  string languageCode = 2;
+}
+
+message GetUserProgressResponse {
+  string languageCode = 1;
+  string level = 2;
+  Progress progress = 3;
+}
+
+message Progress {
+  int64 xp = 1;
+  int64 lessonCompleted = 2;
+  int64 vocabularyLearned = 3;
+}
+
+message UserID {
+  string id = 1;
+}
