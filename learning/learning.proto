@@ -20,7 +20,38 @@ service LanguageLearningService {
     rpc CreateLesson(CreateLessonRequest) returns (Lesson);
     rpc GetLessons(GetLessonsRequest) returns (GetLessonsResponse);
     rpc GetLessonDetails(GetLessonDetailsRequest) returns (GetLessonDetailsResponse);
+
+    rpc CreateVocabulary(CreateVocabularyRequest) returns (Vocabulary);
+    rpc GetVocabularyDetails(GetVocabularyDetailsRequest) returns (Vocabulary);
+
+    // rpc CreateExercises(CreateExercisesRequest) returns (Exercises);
   }
+
+  
+
+message CreateVocabularyRequest{
+  string language_code = 1;
+  string word = 2;
+  string translation = 3;
+  string example_sentence = 4;
+}
+message Vocabulary {
+  string id = 1;
+  string language_code =2 ;
+  string lesson_id = 3;
+  string word = 4;
+  string translation = 5;
+  string example_sentence = 6;
+  string created_at = 7;
+  string updated_at = 8;
+}
+
+message GetVocabularyDetailsRequest {
+  string id = 1;
+  string lesson_id = 2;
+  string language_code = 3;
+}
+
 
 message CreateLessonRequest {
   string language_code = 1;
