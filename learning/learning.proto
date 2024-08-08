@@ -7,17 +7,41 @@ package learning;
 // Messages
 service LanguageLearningService {
     rpc StartLearning(StartLearningRequest) returns (StartLearningResponse);
-    rpc GetLessons(GetLessonsRequest) returns (GetLessonsResponse);
-    rpc GetLessonDetails(GetLessonDetailsRequest) returns (GetLessonDetailsResponse);
     rpc CompleteLesson(CompleteLessonRequest) returns (CompleteLessonResponse);
     rpc GetExercises(GetExercisesRequest) returns (GetExercisesResponse);
     rpc SubmitExercise(SubmitExerciseRequest) returns (SubmitExerciseResponse);
+    
     rpc GetVocabulary(GetVocabularyRequest) returns (GetVocabularyResponse);
     rpc AddVocabulary(AddVocabularyRequest) returns (AddVocabularyResponse);
-
+    
     rpc GetLanguages(GetLanguagesRequest) returns (GetLanguagesResponse);
     rpc CreateLanguage(CreateLanguageRequest) returns (language);
+    
+    rpc CreateLesson(CreateLessonRequest) returns (Lesson);
+    rpc GetLessons(GetLessonsRequest) returns (GetLessonsResponse);
+    rpc GetLessonDetails(GetLessonDetailsRequest) returns (GetLessonDetailsResponse);
   }
+
+message CreateLessonRequest {
+  string language_code = 1;
+  string title = 2;
+  string level = 3;
+  repeated content content = 4;
+}
+
+message content {
+  string type = 1;
+  string data = 2;
+}
+
+message Lesson {
+  string id = 1;
+  string title = 2;
+  string level = 3;
+  repeated content content = 6;
+  string created_at = 4;
+  string updated_at = 5;
+}
 
 message CreateLanguageRequest{
   string code = 1;
@@ -62,12 +86,7 @@ message GetLessonsRequest {
   string language_code = 1;
 }
 
-message Lesson {
-  string id = 1;
-  string title = 2;
-  string level = 3;
-  bool completed = 4;
-}
+
 
 message GetLessonsResponse {
   string language = 1;
