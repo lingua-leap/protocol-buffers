@@ -14,13 +14,31 @@ service LanguageLearningService {
     rpc SubmitExercise(SubmitExerciseRequest) returns (SubmitExerciseResponse);
     rpc GetVocabulary(GetVocabularyRequest) returns (GetVocabularyResponse);
     rpc AddVocabulary(AddVocabularyRequest) returns (AddVocabularyResponse);
+    rpc GetLanguages(GetLanguagesRequest) returns (GetLanguagesResponse);
 }
 
+message language {
+  string id = 3;
+  string code = 1;
+  string name = 2;
+  string flag_emoji = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message GetLanguagesRequest{
+  int32 limit = 1;
+  int32 page = 2;
+}
+
+message GetLanguagesResponse{
+  repeated language languages =1;
+}
 message StartLearningRequest {
   string language_code = 1;
   string initial_level = 2;
 }
-  
+
 message LessonInfo {
   string id = 1;
   string title = 2;
