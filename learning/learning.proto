@@ -190,13 +190,13 @@ message GetVocabularyRequest {
   string language_code = 1;
 }
 
-message Vocabulary {
-  string word = 1;
-  string translation = 2;
-  string part_of_speech = 3;
-  string example_sentence = 4;
-  string audio_url = 5;
-}
+// message Vocabulary {
+//   string word = 1;
+//   string translation = 2;
+//   string part_of_speech = 3;
+//   string example_sentence = 4;
+//   string audio_url = 5;
+// }
 
 message GetVocabularyResponse {
   string language = 1;
