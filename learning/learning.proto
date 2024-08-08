@@ -14,7 +14,15 @@ service LanguageLearningService {
     rpc SubmitExercise(SubmitExerciseRequest) returns (SubmitExerciseResponse);
     rpc GetVocabulary(GetVocabularyRequest) returns (GetVocabularyResponse);
     rpc AddVocabulary(AddVocabularyRequest) returns (AddVocabularyResponse);
+
     rpc GetLanguages(GetLanguagesRequest) returns (GetLanguagesResponse);
+    rpc CreateLanguage(CreateLanguageRequest) returns (language);
+  }
+
+message CreateLanguageRequest{
+  string code = 1;
+  string name = 2;
+  string flag_emoji = 4;
 }
 
 message language {
