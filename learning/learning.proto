@@ -114,7 +114,10 @@ message StartLearningResponse {
 }
 
 message GetLessonsRequest {
-  string language_code = 1;
+  int32 limit = 1;
+  int32 page = 2;
+ 
+  string language_code = 3;
 }
 
 
