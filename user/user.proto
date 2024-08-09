@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user;
 
-option go_package = "generated/user";
+option go_package = "generated/user_service";
 
 
 service UserService {
